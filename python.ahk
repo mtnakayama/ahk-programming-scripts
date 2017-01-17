@@ -1,6 +1,8 @@
+#SingleInstance force
 
+:o:.ap::.append
 ::cl::class
-::de::def
+:o:df::def ():{Left 3}
 ::ex::except
 ::ff::False
 ::fromfuture::from __future__ import absolute_import, division, print_function
