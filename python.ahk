@@ -2,7 +2,12 @@
 
 :o:.ap::.append
 ::cl::class
+<<<<<<< HEAD
 :o:df::def ():{Left 3}
+=======
+::de::def
+::definit::def __init__(self):{Enter}super().__init__(self)
+>>>>>>> af9f63e8d7d45ec980658c4ef32f858bd0ebe558
 ::ex::except
 ::ff::False
 ::fromfuture::from __future__ import absolute_import, division, print_function
