@@ -2,7 +2,7 @@
 
 ::dr::--dry-run
 ::gb::git branch
-::gc::git commit
+::gc::git commit -m ""{Left 6}
 :o:gcam::git commit -am ""{Left}
 
 ::glog::
