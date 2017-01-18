@@ -1,6 +1,7 @@
 #SingleInstance force
 
 :o:.ap::.append
+::catch::except
 ::cl::class
 :o:df::def ():{Left 3}
 ::dfinit::def __init__(self):{Enter}super().__init__()
@@ -14,6 +15,7 @@
 ::la::lambda
 ::ra::raise
 ::re::return
+::throw::raise
 ::tr::try:{Enter}
 ::tt::True
 ::wh::while
