@@ -26,6 +26,7 @@ dictionary:
   delete : dl
   default : de
   "#define" : df
+  def : df
   double : db
   dynamic_cast : dyct
 
@@ -41,6 +42,8 @@ dictionary:
   extern : ex  # C++
 
   "false" : ff
+  "False" : ff
+
   final:
     - fi
     - co
@@ -48,6 +51,8 @@ dictionary:
   float : fl
   free : fr
   friend : fd
+
+  global : gl
 
   "#ifdef" : ifd
   "#ifndef" : ifn
@@ -69,8 +74,10 @@ dictionary:
   int64_t : i6
   int8_t : i8
 
+  __init__ : nit
   interface : ia
 
+  lambda : lm
   long : ll
 
   malloc : mc
@@ -85,12 +92,20 @@ dictionary:
   "NULL" : nn
 
   noexcept : nx
+  nonlocal : nl
+  not : nt
   nullptr : np
 
+  Object : ob
   operator : op
 
   package : pk
+  pass:
+    - ps
+    - nop
+  print: pt
   private : pr
+  "@property" : pr
   protected : pd
   public : pu
 
@@ -102,6 +117,9 @@ dictionary:
   return : rn
   requires : rq  # C++20
 
+  self:
+    - th
+    - sf
   signed : sg
   sizeof : sf
   size_t : sz
@@ -124,7 +142,10 @@ dictionary:
   throw : tw
   throws : tws
   transient : ts
+
   "true" : tt
+  "True" : tt
+
   try : ty
   typedef : td
   typeid : ti
@@ -145,3 +166,6 @@ dictionary:
 
   wchar_t : wch
   while : wh
+  with : wt
+
+  yield : yd
