@@ -1,0 +1,37 @@
+include:
+  - c.yml
+
+keywords:
+  - auto
+  - class
+  - const_cast
+  - constexpr
+  - decltype
+  - delete
+  - dynamic_cast
+  - explicit
+  - export
+  - friend
+  - mutable
+  - namespace
+  - new
+  - noexcept
+  - nullptr
+  - operator
+  - private
+  - protected
+  - public
+  - reinterpret_cast
+  - requires
+  - static_cast
+  - template
+  - this
+  - thread_local
+  - throw
+  - try
+  - typedef
+  - typeid
+  - typename
+  - using
+  - virtual
+  - wchar_t
