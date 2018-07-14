@@ -1,5 +1,6 @@
 dictionary:
   abstract : ab
+  Array : ar
   assert : at
   auto : au
 
@@ -16,6 +17,9 @@ dictionary:
   char : ch
   Character : Ch
   class : cl
+  console.log:
+    - cg
+    - pt
   const : co
   constexpr : cx
   const_cast : coct
@@ -23,10 +27,12 @@ dictionary:
   continue : cn
 
   decltype : dt
+  debugger : dg
   delete : dl
   default : de
   "#define" : df
   def : df
+  document : dc
   double : db
   dynamic_cast : dyct
 
@@ -51,6 +57,7 @@ dictionary:
   float : fl
   free : fr
   friend : fd
+  function : fn
 
   global : gl
 
@@ -78,9 +85,11 @@ dictionary:
   interface : ia
 
   lambda : lm
+  let : le
   long : ll
 
   malloc : mc
+  Math : ma
   mutable : mu
 
   namespace : ns
@@ -107,6 +116,7 @@ dictionary:
   private : pr
   "@property" : pr
   protected : pd
+  prototype : pp  # can't be pr, since `private` may be added in the future.
   public : pu
 
   raise :
@@ -150,22 +160,27 @@ dictionary:
   typedef : td
   typeid : ti
   typename : tn
+  typeof : tf
 
   uint16_t : u1
   uint32_t : u3
   uint64_t : u6
   uint8_t : u8
 
+  undefined : ud
   union : uo
   unsigned : ug
   using : us
+  '''use strict'';' : us
 
+  var : vr
   virtual : vt
   void : vd
   volatile : vo
 
   wchar_t : wch
   while : wh
+  window : wn
   with : wt
 
   yield : yd
