@@ -1,0 +1,171 @@
+dictionary:
+  abstract : ab
+  assert : at
+  auto : au
+
+  bool : bl
+  boolean : bl
+  break : bk
+  byte:
+    - bt
+    - u8
+
+  case : ca
+  calloc : cc
+  catch : ct
+  char : ch
+  Character : Ch
+  class : cl
+  const : co
+  constexpr : cx
+  const_cast : coct
+  "const char*" : ccs
+  continue : cn
+
+  decltype : dt
+  delete : dl
+  default : de
+  "#define" : df
+  def : df
+  double : db
+  dynamic_cast : dyct
+
+  else : el
+  enum : en
+  "#endif" : ei
+  except:
+    - ex
+    - ct
+  extends : ex  # Java
+  explicit : et
+  export : ep
+  extern : ex  # C++
+
+  "false" : ff
+  "False" : ff
+
+  final:
+    - fi
+    - co
+  finally : fy
+  float : fl
+  free : fr
+  friend : fd
+
+  global : gl
+
+  "#ifdef" : ifd
+  "#ifndef" : ifn
+  import : im
+  implements : ie
+  "#include":
+    - im
+    - ic
+  include:
+    - im
+    - ic
+  inline: il
+  instanceof : iof
+
+  int : ii
+  Integer : Ii
+  int16_t : i1
+  int32_t : i3
+  int64_t : i6
+  int8_t : i8
+
+  __init__ : nit
+  interface : ia
+
+  lambda : lm
+  long : ll
+
+  malloc : mc
+  mutable : mu
+
+  namespace : ns
+  native : nv
+  new : nw
+
+  None : nn
+  "null" : nn
+  "NULL" : nn
+
+  noexcept : nx
+  nonlocal : nl
+  not : nt
+  nullptr : np
+
+  Object : ob
+  operator : op
+
+  package : pk
+  pass:
+    - ps
+    - nop
+  print: pt
+  private : pr
+  "@property" : pr
+  protected : pd
+  public : pu
+
+  raise :
+    - ra
+    - tw
+  realloc : rc
+  reinterpret_cast : rict
+  return : rn
+  requires : rq  # C++20
+
+  self:
+    - th
+    - sf
+  signed : sg
+  sizeof : sf
+  size_t : sz
+  short : sh
+  static : sc
+  static_cast : scct
+
+  String : st
+  str : st
+  string : st
+
+  struct : sr
+  super : sp
+  switch : sw
+  syncronized : sn
+
+  template : tp
+  this : th
+  thread_local : trlc
+  throw : tw
+  throws : tws
+  transient : ts
+
+  "true" : tt
+  "True" : tt
+
+  try : ty
+  typedef : td
+  typeid : ti
+  typename : tn
+
+  uint16_t : u1
+  uint32_t : u3
+  uint64_t : u6
+  uint8_t : u8
+
+  union : uo
+  unsigned : ug
+  using : us
+
+  virtual : vt
+  void : vd
+  volatile : vo
+
+  wchar_t : wch
+  while : wh
+  with : wt
+
+  yield : yd
