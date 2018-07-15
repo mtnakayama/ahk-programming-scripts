@@ -1,5 +1,6 @@
 keywords:
   - abstract
+  - ArrayList
   - assert
   - boolean
   - break
@@ -14,6 +15,7 @@ keywords:
   - double
   - else
   - enum
+  - extends
   - "false"
   - final
   - finally
@@ -25,6 +27,7 @@ keywords:
   - Integer
   - interface
   - long
+  - Math
   - native
   - new
   - package
@@ -38,6 +41,8 @@ keywords:
   - super
   - switch
   - syncronized
+  - System
+  - System.out.println
   - this
   - throw
   - throws

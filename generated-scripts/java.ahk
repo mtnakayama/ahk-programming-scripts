@@ -1,8 +1,8 @@
 ; =============================================================================
 ; DO NOT MODIFY
 ; THIS IS AUTOMATICALLY GENERATED CODE
-; Generated on 2018-07-13 20:56:12.044657
-; With 'generate_ahk.py'
+; Generated on 2018-07-14 22:36:18.430735
+; With '.\generate_ahk.py'
 ; =============================================================================
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -13,11 +13,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
 OldEndChars := Hotstring("EndChars")
-NewEndChars := OldEndChars . "*"  ; Make '*' trigger hotstring replacement
+NewEndChars := OldEndChars . "*<>"  ; Make '*<>' trigger hotstring replacement
 Hotstring("EndChars", NewEndChars)
 
 ; ======== Hoststrings ========
 ::ab::abstract
+::arls::ArrayList
 ::at::assert
 
 ::bl::boolean
@@ -37,6 +38,7 @@ Hotstring("EndChars", NewEndChars)
 
 ::el::else
 ::en::enum
+::ex::extends
 
 ::ff::false
 ::fi::final
@@ -52,6 +54,8 @@ Hotstring("EndChars", NewEndChars)
 ::ia::interface
 
 ::ll::long
+
+::ma::Math
 
 ::nv::native
 ::nw::new
@@ -69,6 +73,8 @@ Hotstring("EndChars", NewEndChars)
 ::sp::super
 ::sw::switch
 ::sn::syncronized
+::sm::System
+::pt::System.out.println
 
 ::th::this
 ::tw::throw
