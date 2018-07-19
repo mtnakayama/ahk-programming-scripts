@@ -2,7 +2,7 @@ dictionary:
   abstract : ab
   Array : ar
   ArrayList : arls
-  assert : at
+  assert : att
   auto : au
 
   bool : bl
