@@ -2,7 +2,7 @@ dictionary:
   abstract : ab
   Array : ar
   ArrayList : arls
-  assert : att
+  assert : aa
   auto : au
 
   bool : bl
@@ -138,6 +138,7 @@ dictionary:
   size_t : sz
   short : sh
   static : sc
+  static_assert : saa
   static_cast : scct
 
   String : st
