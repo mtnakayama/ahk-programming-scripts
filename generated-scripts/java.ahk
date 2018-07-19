@@ -1,7 +1,7 @@
 ; =============================================================================
 ; DO NOT MODIFY
 ; THIS IS AUTOMATICALLY GENERATED CODE
-; Generated on 2018-07-14 22:36:18.430735
+; Generated on 2018-07-17 22:43:46.620623
 ; With '.\generate_ahk.py'
 ; =============================================================================
 
@@ -17,6 +17,8 @@ NewEndChars := OldEndChars . "*<>"  ; Make '*<>' trigger hotstring replacement
 Hotstring("EndChars", NewEndChars)
 
 ; ======== Hoststrings ========
+::ov::@Override
+
 ::ab::abstract
 ::arls::ArrayList
 ::at::assert
@@ -60,6 +62,8 @@ Hotstring("EndChars", NewEndChars)
 ::nv::native
 ::nw::new
 
+::ob::Object
+
 ::pk::package
 ::pr::private
 ::pd::protected
@@ -80,6 +84,7 @@ Hotstring("EndChars", NewEndChars)
 ::tw::throw
 ::tws::throws
 ::ts::transient
+::tt::true
 ::ty::try
 
 ::vd::void

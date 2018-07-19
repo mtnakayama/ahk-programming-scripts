@@ -30,6 +30,8 @@ keywords:
   - Math
   - native
   - new
+  - Object
+  - "@Override"
   - package
   - private
   - protected
@@ -47,6 +49,7 @@ keywords:
   - throw
   - throws
   - transient
+  - "true"
   - try
   - void
   - volatile

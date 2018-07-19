@@ -109,6 +109,7 @@ dictionary:
 
   Object : ob
   operator : op
+  "@Override" : ov
 
   package : pk
   pass:
