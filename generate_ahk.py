@@ -173,7 +173,6 @@ def generate_ahk(dictionary_filename, language_filename, output_filename):
     with open(language_filename, 'r') as language_config:
         language_name = yaml.load(language_config)['language']
 
-    print("keywords", keywords)
     with open(dictionary_filename, 'r') as dictionary:
 
         keyword_map = build_dictionary(
@@ -185,7 +184,9 @@ def generate_ahk(dictionary_filename, language_filename, output_filename):
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python generate_ahk.py [dictionary.yml] [cpp.yml]")
+        print(
+            "Usage: python generate_ahk.py [dictionary.yml] [language.yml] [out.ahk]"
+        )
     else:
         dictionary_filename = sys.argv[1]
         language_filename = sys.argv[2]
