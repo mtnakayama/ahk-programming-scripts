@@ -1,7 +1,7 @@
 ; =============================================================================
 ; DO NOT MODIFY
 ; THIS IS AUTOMATICALLY GENERATED CODE
-; Generated on 2018-07-17 22:43:46.620623
+; Generated on 2018-07-19 14:18:20.719692
 ; With '.\generate_ahk.py'
 ; =============================================================================
 
@@ -12,16 +12,33 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #SingleInstance force
 
+; ======== Add Hotstring EndChars ========
 OldEndChars := Hotstring("EndChars")
 NewEndChars := OldEndChars . "*<>"  ; Make '*<>' trigger hotstring replacement
 Hotstring("EndChars", NewEndChars)
+
+; ======== Toggle Script Key ========
+EnableScript := True
+#c::
+    Suspend, Permit
+    EnableScript := not EnableScript
+    if (EnableScript) {
+        Suspend, Off
+        TrayMessage := "Enabled"
+    }
+    else {
+        Suspend, On
+        TrayMessage := "Suspended"
+    }
+    TrayTip, Java Hotstrings, %TrayMessage%, 1, 0x11
+    Return
 
 ; ======== Hoststrings ========
 ::ov::@Override
 
 ::ab::abstract
 ::arls::ArrayList
-::at::assert
+::att::assert
 
 ::bl::boolean
 ::bk::break

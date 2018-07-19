@@ -89,20 +89,40 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #SingleInstance force
 
+; ======== Add Hotstring EndChars ========
 OldEndChars := Hotstring("EndChars")
 NewEndChars := OldEndChars . "*<>"  ; Make '*<>' trigger hotstring replacement
 Hotstring("EndChars", NewEndChars)
 
+; ======== Toggle Script Key ========
+EnableScript := True
+#c::
+    Suspend, Permit
+    EnableScript := not EnableScript
+    if (EnableScript) {{
+        Suspend, Off
+        TrayMessage := "Enabled"
+    }}
+    else {{
+        Suspend, On
+        TrayMessage := "Suspended"
+    }}
+    TrayTip, {language} Hotstrings, %TrayMessage%, 1, 0x11
+    Return
+
 ; ======== Hoststrings ========"""
 
 
-def create_ahk(file_handle, keywords, script_name=__file__):
+def create_ahk(file_handle, keywords, language_name, script_name=__file__):
     """Generate an ahk script based on a abbreviation -> keyword dictionary."""
 
     requires_case_sensitive = make_requires_case_sensitive(keywords.keys())
 
     file_handle.write(
-        AHK_HEADER.format(date=datetime.datetime.now(), script=script_name))
+        AHK_HEADER.format(
+            date=datetime.datetime.now(),
+            script=script_name,
+            language=language_name))
 
     prev_letter = None
     for abbrev, word in sorted(keywords.items(), key=lambda kv: kv[1].upper()):
@@ -150,15 +170,17 @@ def read_keywords(keywords_filename, keywords=None, search_path=None):
 def generate_ahk(dictionary_filename, language_filename, output_filename):
     language_dir = os.path.dirname(os.path.abspath(language_filename))
     keywords = read_keywords(language_filename, search_path=[language_dir])
+    with open(language_filename, 'r') as language_config:
+        language_name = yaml.load(language_config)['language']
+
     print("keywords", keywords)
-    with open(dictionary_filename, 'r') as dictionary,\
-        open(language_filename, 'r') as language:
+    with open(dictionary_filename, 'r') as dictionary:
 
         keyword_map = build_dictionary(
             yaml.load(dictionary)['dictionary'], keywords)
 
     with open(output_filename, 'w') as out:
-        create_ahk(out, keyword_map)
+        create_ahk(out, keyword_map, language_name)
 
 
 def main():
