@@ -91,7 +91,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; ======== Add Hotstring EndChars ========
 OldEndChars := Hotstring("EndChars")
-NewEndChars := OldEndChars . "*<>"  ; Make '*<>' trigger hotstring replacement
+NewEndChars := OldEndChars . "*<>&"  ; Make '*<>' trigger hotstring replacement
 Hotstring("EndChars", NewEndChars)
 
 ; ======== Toggle Script Key ========
