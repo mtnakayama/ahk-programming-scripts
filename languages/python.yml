@@ -6,6 +6,7 @@ keywords:
   - class
   - continue
   - def
+  - enum
   - except
   - "False"
   - finally
@@ -13,6 +14,7 @@ keywords:
   - import
   - __init__
   - lambda
+  - math
   - None
   - nonlocal
   - not

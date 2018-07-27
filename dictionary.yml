@@ -92,6 +92,7 @@ dictionary:
 
   malloc : mc
   Math : ma
+  math : ma
   mutable : mu
 
   namespace : ns
