@@ -42,11 +42,12 @@ def add_keyword(abbreviation, word, keywords):
     keywords[abbreviation] = word
 
 
-def build_dictionary(dictionary, language):
+def build_dictionary(dictionary, language, keywords=None):
     """Adds the keywords specified in the language_file;
     Builds a dictionary to be used in the ahk script."""
 
-    keywords = {}
+    if not keywords:
+        keywords = {}
 
     for word in language:
         abbreviation = dictionary[word]
@@ -173,36 +174,48 @@ def find_file(filename, paths=None):
         "and in {}".format(filename, paths))
 
 
-def read_keywords(keywords_filename, keywords=None, search_path=None):
-    if keywords is None:
-        keywords = set()
+class Language(object):
+    def __init__(self):
+        self.name = None
+        self.keywords = set()
+        self.snippets = set()
 
-    with open(keywords_filename, 'r') as language_file:
-        language_config = yaml.load(language_file)
-        if 'include' in language_config:
-            for lang_parent in language_config['include']:
-                read_keywords(
-                    find_file(lang_parent, search_path),
-                    keywords=keywords,
-                    search_path=search_path)
-        keywords.update(language_config['keywords'])
+    def _load_file(self, filename, search_paths=None, start=False):
+        with open(filename, 'r') as language_file:
+            language_config = yaml.load(language_file)
 
-    return keywords
+            if start:
+                self.name = language_config
+
+            # first, load the "parent" languages.
+            if 'include' in language_config:
+                for lang_parent in language_config['include']:
+                    self._load_file(
+                        find_file(lang_parent, search_paths),
+                        search_paths=search_paths)
+
+            self.keywords.update(language_config['keywords'])
+
+            if 'snippets' in language_config:
+                self.snippets.update(language_config['snippets'])
+
+    def load_file(self, filename, search_paths=None):
+        self._load_file(filename, search_paths=search_paths, start=True)
 
 
 def generate_ahk(dictionary_filename, language_filename, output_filename):
     language_dir = os.path.dirname(os.path.abspath(language_filename))
-    keywords = read_keywords(language_filename, search_path=[language_dir])
-    with open(language_filename, 'r') as language_config:
-        language_name = yaml.load(language_config)['language']
+
+    language = Language()
+    language.load_file(language_filename, search_paths=[language_dir])
 
     with open(dictionary_filename, 'r') as dictionary:
 
         keyword_map = build_dictionary(
-            yaml.load(dictionary)['dictionary'], keywords)
+            yaml.load(dictionary)['dictionary'], language.keywords)
 
     with open(output_filename, 'w') as out:
-        create_ahk(out, keyword_map, language_name)
+        create_ahk(out, keyword_map, language.name)
 
 
 def main():

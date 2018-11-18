@@ -200,3 +200,6 @@ dictionary:
   with : wt
 
   yield : yd
+
+snippets:
+  if : i

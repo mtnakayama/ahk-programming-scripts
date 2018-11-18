@@ -3,6 +3,8 @@ language: "C++"
 include:
   - c.yml
 
+snippet-cmd: "^k^xaps{}{{Enter}}"
+
 keywords:
   - auto
   - class
@@ -40,3 +42,6 @@ keywords:
   - virtual
   - vector
   - wchar_t
+
+snippets:
+  - if
