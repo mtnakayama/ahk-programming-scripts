@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- classm.snippet - Visual Studio-compatible snippet for a C++ getter
+    member function. (C++14)
+
+    Written in 2018 by Matthew Nakayama matthewnakayama@gmail.com
+
+    To the extent possible under law, the author(s) have dedicated all
+    copyright and related and neighboring rights to this software to the public
+    domain worldwide. This software is distributed without any warranty.
+
+    You should have received a copy of the CC0 Public Domain Dedication along
+    with this software. If not, see
+    <http://creativecommons.org/publicdomain/zero/1.0/>. -->
+
+<CodeSnippets
+        xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>getter</Title>
+            <Shortcut>getter</Shortcut>
+            <Author>Matthew Nakayama</Author>
+            <Description>Simple getter method. (C++14)</Description>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>fn</ID>
+                    <ToolTip>Getter/Setter function name</ToolTip>
+                    <Default>get</Default>
+                </Literal>
+                <Literal>
+                    <ID>member</ID>
+                    <ToolTip>Member name</ToolTip>
+                    <Default>member</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="CPP" Kind="method body">
+                <![CDATA[auto $fn$() const { return this->$member$; } /* get */]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

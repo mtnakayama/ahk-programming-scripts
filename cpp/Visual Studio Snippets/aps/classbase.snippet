@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- classbase.snippet - Visual Studio-compatible snippet for a virtual base
+    class. This snippet is meant to help create programs adhering the the
+    CPP Core Guidelines.
+
+    Written in 2018 by Matthew Nakayama matthewnakayama@gmail.com
+
+    To the extent possible under law, the author(s) have dedicated all
+    copyright and related and neighboring rights to this software to the public
+    domain worldwide. This software is distributed without any warranty.
+
+    You should have received a copy of the CC0 Public Domain Dedication along
+    with this software. If not, see
+    <http://creativecommons.org/publicdomain/zero/1.0/>. -->
+
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>classbase (Virtual Base Class)</Title>
+            <Shortcut>classbase</Shortcut>
+            <Description>Virtual base class with virtual destructor and clone function.</Description>
+            <Author>Matthew Nakayama</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <SnippetType>SurroundsWith</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+            </Declarations>
+            <!-- No private section, since virtual base should not have data (C.-->
+            <Code Language="CPP"><![CDATA[class $name$ {
+                public:
+                    $name$() = default; /* C.126 */
+
+                    $name$(const $name$&) = delete;
+                    $name$($name$&&) = delete; /* C.21 */
+
+                    $name$& operator=(const $name$&) = delete; /* C.67 */
+                    $name$& operator=($name$&&) = delete;
+
+                    virtual ~$name$() noexcept {} /* C.127 */
+
+                    virtual std::unique_ptr<$name$> clone(); /* C.67 */
+
+                    $selected$$end$
+                };]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

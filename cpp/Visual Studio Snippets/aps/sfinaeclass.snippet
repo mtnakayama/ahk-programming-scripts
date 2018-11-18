@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- sfinaeclass.snippet - Visual Studio-compatible snippet which creates a
+    default class and partially specialized class.
+
+    Written in 2018 by Matthew Nakayama matthewnakayama@gmail.com
+
+    To the extent possible under law, the author(s) have dedicated all
+    copyright and related and neighboring rights to this software to the public
+    domain worldwide. This software is distributed without any warranty.
+
+    You should have received a copy of the CC0 Public Domain Dedication along
+    with this software. If not, see
+    <http://creativecommons.org/publicdomain/zero/1.0/>. -->
+
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>sfinaeclass</Title>
+            <Shortcut>sfinaeclass</Shortcut>
+            <Description>Default and specialized class.</Description>
+            <Author>Matthew Nakayama</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <SnippetType>SurroundsWith</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+                <Literal>
+                    <ID>typename</ID>
+                    <ToolTip>typename</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal>
+                    <ID>condition</ID>
+                    <ToolTip>condition for specialization</ToolTip>
+                    <Default>false</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="CPP"><![CDATA[template<typename $typename$, typename Enable = void>
+            class $name$ {
+            private:
+                $selected$$end$
+            public:
+            };
+
+            template<typename $typename$>
+            class $name$<$typename$, std::enable_if_t<$condition$>> {
+            private:
+            public:
+            };]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
