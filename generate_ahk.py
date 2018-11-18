@@ -7,10 +7,11 @@ from __future__ import (absolute_import, division, print_function,
 
 import datetime
 import errno
+from functools import singledispatch
 import os
 import sys
+from typing import Iterable
 
-import six
 import yaml  # pyyaml package
 
 
@@ -19,17 +20,47 @@ class AbbreviationClashError(KeyError):
     pass
 
 
-class Abbreviation(object):
+class Hotstring(object):
     FLAGS = {'no_end_char': '*', 'case_sensitive': 'c'}
 
     def __init__(self, word, abbrev, flags=None):
         self.word = word
         self.abbrev = abbrev
+        self.flags = set()
 
-        if not flags:
-            self.flags = ''
-        else:
-            self.flags = ''.join((self.FLAGS[x] for x in flags))
+        if flags:
+            self.flags.update(flags)
+
+    def to_ahk(self):
+        hostsring_flags = ''.join((self.FLAGS[x] for x in self.flags))
+        return ':{}:{}::{}\n'.format(hostsring_flags, escape_ahk(self.abbrev),
+                                     escape_ahk(self.word))
+
+
+@singledispatch
+def make_hotstrings(item, _) -> Iterable[Hotstring]:
+    raise TypeError("make_hotstring not implemented for "
+                    "type {}.".format(type(item)))
+
+
+@make_hotstrings.register
+def _(item: str, word) -> Iterable[Hotstring]:
+    """Single abbreviation"""
+    return (Hotstring(word, item), )
+
+
+@make_hotstrings.register
+def _(item: dict, word) -> Iterable[Hotstring]:
+    """Single abbreviation with flags"""
+    abbrev = item['abbrev']
+    flags = item['flags']
+    return (Hotstring(word, abbrev, flags), )
+
+
+@make_hotstrings.register
+def _(item: list, word) -> Iterable[Hotstring]:
+    """Single abbreviation with flags"""
+    return (make_hotstrings(x, word)[0] for x in item)
 
 
 def add_keyword(abbreviation, word, keywords):
@@ -50,19 +81,16 @@ def build_dictionary(dictionary, language, keywords=None):
         keywords = {}
 
     for word in language:
-        abbreviation = dictionary[word]
-        if isinstance(abbreviation, six.string_types):  # single abbrevation
-            add_keyword(abbreviation, Abbreviation(word, abbreviation),
-                        keywords)
+        entry = dictionary[word]
 
-        elif isinstance(abbreviation, dict):
-            abbrev = abbreviation['abbrev']
-            flags = abbreviation['flags']
-            add_keyword(abbrev, Abbreviation(word, abbrev, flags), keywords)
+        for hotstr in make_hotstrings(entry, word):
+            add_keyword(hotstr.abbrev, hotstr, keywords)
 
-        else:  # abbreviation holds multiple
-            for abbr in abbreviation:
-                add_keyword(abbr, Abbreviation(word, abbr), keywords)
+    # set case_sensitive flag for the hotstrings that require it.
+    requires_case_sensitive = make_requires_case_sensitive(keywords.keys())
+    for abbrev, hotstr in keywords.items():
+        if requires_case_sensitive(hotstr.abbrev):
+            hotstr.flags.add('case_sensitive')
 
     return keywords
 
@@ -134,8 +162,6 @@ EnableScript := True
 def create_ahk(file_handle, keywords, language_name, script_name=__file__):
     """Generate an ahk script based on a abbreviation -> keyword dictionary."""
 
-    requires_case_sensitive = make_requires_case_sensitive(keywords.keys())
-
     file_handle.write(
         AHK_HEADER.format(
             date=datetime.datetime.now(),
@@ -154,11 +180,7 @@ def create_ahk(file_handle, keywords, language_name, script_name=__file__):
             file_handle.write('\n')
             prev_letter = leading_letter
 
-        flags = abbrev_obj.flags
-        if requires_case_sensitive(abbrev) and 'c' not in flags:
-            flags += 'c'
-        file_handle.write(':{}:{}::{}\n'.format(flags, escape_ahk(abbrev),
-                                                escape_ahk(word)))
+        file_handle.write(abbrev_obj.to_ahk())
 
 
 def find_file(filename, paths=None):
