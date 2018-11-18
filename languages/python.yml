@@ -11,6 +11,7 @@ keywords:
   - except
   - "False"
   - finally
+  - from
   - global
   - import
   - __init__

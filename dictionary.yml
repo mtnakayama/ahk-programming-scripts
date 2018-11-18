@@ -62,6 +62,7 @@ keywords:
   float : fl
   free : fr
   friend : fd
+  from : fr
   function : fn
 
   global : gl
@@ -138,7 +139,7 @@ keywords:
     - th
     - sf
   signed : sg
-  sizeof : sf
+  sizeof : sof
   size_t : sz
   short : sh
   static : sc
@@ -162,7 +163,9 @@ keywords:
   System.out.println : pt
 
   template : tp
-  this : th
+  this :
+    - sf
+    - th
   thread_local : trlc
   throw :
     - ra
