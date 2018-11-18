@@ -12,6 +12,8 @@ keywords:
   - "#define"
   - default
   - double
+  - else
+  - else if
   - "#endif"
   - enum
   - "false"

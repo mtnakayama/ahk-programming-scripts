@@ -39,6 +39,7 @@ dictionary:
   dynamic_cast : dyct
 
   else : el
+  else if: elif
   enum : en
   "#endif" : ei
   except:
