@@ -7,12 +7,14 @@ snippet_cmd: "^k^xaps{{Enter}}{}{{Enter}}"
 
 keywords:
   - auto
+  - begin
   - class
   - const_cast
   - constexpr
   - decltype
   - delete
   - dynamic_cast
+  - end
   - explicit
   - export
   - friend

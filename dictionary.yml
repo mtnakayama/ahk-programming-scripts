@@ -5,6 +5,7 @@ keywords:
   assert : aa
   auto : au
 
+  begin : bg
   bool : bl
   boolean : bl
   break : bk
@@ -40,6 +41,7 @@ keywords:
 
   else : el
   else if: elif
+  end : ee
   enum : en
   "#endif" : ei
   except:
