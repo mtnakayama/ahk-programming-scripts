@@ -73,26 +73,35 @@ def add_keyword(abbreviation, word, keywords):
     keywords[abbreviation] = word
 
 
-def build_dictionary(dictionary, language, keywords=None):
+def build_dictionary(dictionary, language, hotstrings=None):
     """Adds the keywords specified in the language_file;
     Builds a dictionary to be used in the ahk script."""
 
-    if not keywords:
-        keywords = {}
+    if not hotstrings:
+        hotstrings = {}
 
-    for word in language:
-        entry = dictionary[word]
+    dict_keywords = dictionary['keywords']
+    for word in language.keywords:
+        entry = dict_keywords[word]
 
         for hotstr in make_hotstrings(entry, word):
-            add_keyword(hotstr.abbrev, hotstr, keywords)
+            add_keyword(hotstr.abbrev, hotstr, hotstrings)
+
+    dict_snippets = dictionary['snippets']
+    for snippet in language.snippets:
+        trigger = dict_snippets[snippet] + '$'
+        hotstr = Hotstring(
+            language.snippet_cmd.format(snippet), trigger, ['no_end_char'])
+
+        add_keyword(hotstr.abbrev, hotstr, hotstrings)
 
     # set case_sensitive flag for the hotstrings that require it.
-    requires_case_sensitive = make_requires_case_sensitive(keywords.keys())
-    for abbrev, hotstr in keywords.items():
+    requires_case_sensitive = make_requires_case_sensitive(hotstrings.keys())
+    for abbrev, hotstr in hotstrings.items():
         if requires_case_sensitive(hotstr.abbrev):
             hotstr.flags.add('case_sensitive')
 
-    return keywords
+    return hotstrings
 
 
 def make_requires_case_sensitive(abbreviations):
@@ -200,6 +209,8 @@ class Language(object):
     def __init__(self):
         self.name = None
         self.keywords = set()
+        self.snippet_cmd = None
+        self.snippet_trigger = '$'
         self.snippets = set()
 
     def _load_file(self, filename, search_paths=None, start=False):
@@ -207,7 +218,7 @@ class Language(object):
             language_config = yaml.load(language_file)
 
             if start:
-                self.name = language_config
+                self.name = language_config['language']
 
             # first, load the "parent" languages.
             if 'include' in language_config:
@@ -215,6 +226,15 @@ class Language(object):
                     self._load_file(
                         find_file(lang_parent, search_paths),
                         search_paths=search_paths)
+
+            try:
+                self.snippet_cmd = language_config['snippet_cmd']
+            except KeyError:
+                pass
+            try:
+                self.snippet_trigger = language_config['snippet_trigger']
+            except KeyError:
+                pass
 
             self.keywords.update(language_config['keywords'])
 
@@ -233,8 +253,7 @@ def generate_ahk(dictionary_filename, language_filename, output_filename):
 
     with open(dictionary_filename, 'r') as dictionary:
 
-        keyword_map = build_dictionary(
-            yaml.load(dictionary)['dictionary'], language.keywords)
+        keyword_map = build_dictionary(yaml.load(dictionary), language)
 
     with open(output_filename, 'w') as out:
         create_ahk(out, keyword_map, language.name)

@@ -1,4 +1,4 @@
-dictionary:
+keywords:
   abstract : ab
   Array : ar
   ArrayList : arls
@@ -202,4 +202,4 @@ dictionary:
   yield : yd
 
 snippets:
-  if : i
+  if : if

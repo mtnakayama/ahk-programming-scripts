@@ -3,7 +3,7 @@ language: "C++"
 include:
   - c.yml
 
-snippet-cmd: "^k^xaps{}{{Enter}}"
+snippet_cmd: "^k^xaps{}{{Enter}}"
 
 keywords:
   - auto
