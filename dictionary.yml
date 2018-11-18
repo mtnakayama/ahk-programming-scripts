@@ -142,6 +142,11 @@ dictionary:
   static_assert : saa
   static_cast : scct
 
+  "std::" : {
+    flags : [no_end_char],
+    abbrev : s$
+  }
+
   String : st
   str : st
   string : st
@@ -156,7 +161,9 @@ dictionary:
   template : tp
   this : th
   thread_local : trlc
-  throw : tw
+  throw :
+    - ra
+    - tw
   throws : tws
   transient : ts
 
@@ -181,6 +188,7 @@ dictionary:
   '''use strict'';' : us
 
   var : vr
+  vector : vc
   virtual : vt
   void : vd
   volatile : vo

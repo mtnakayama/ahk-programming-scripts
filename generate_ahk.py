@@ -19,6 +19,19 @@ class AbbreviationClashError(KeyError):
     pass
 
 
+class Abbreviation(object):
+    FLAGS = {'no_end_char': '*', 'case_sensitive': 'c'}
+
+    def __init__(self, word, abbrev, flags=None):
+        self.word = word
+        self.abbrev = abbrev
+
+        if not flags:
+            self.flags = ''
+        else:
+            self.flags = ''.join((self.FLAGS[x] for x in flags))
+
+
 def add_keyword(abbreviation, word, keywords):
     if abbreviation in keywords:
         raise AbbreviationClashError('Conflict between mappings: '
@@ -38,11 +51,17 @@ def build_dictionary(dictionary, language):
     for word in language:
         abbreviation = dictionary[word]
         if isinstance(abbreviation, six.string_types):  # single abbrevation
-            add_keyword(abbreviation, word, keywords)
+            add_keyword(abbreviation, Abbreviation(word, abbreviation),
+                        keywords)
+
+        elif isinstance(abbreviation, dict):
+            abbrev = abbreviation['abbrev']
+            flags = abbreviation['flags']
+            add_keyword(abbrev, Abbreviation(word, abbrev, flags), keywords)
 
         else:  # abbreviation holds multiple
             for abbr in abbreviation:
-                add_keyword(abbr, word, keywords)
+                add_keyword(abbr, Abbreviation(word, abbr), keywords)
 
     return keywords
 
@@ -72,7 +91,7 @@ def make_requires_case_sensitive(abbreviations):
 
 
 def escape_ahk(to_escape):
-    return to_escape.replace('#', '{#}')
+    return to_escape.replace('#', '{#}').replace(':', '{:}')
 
 
 AHK_HEADER = """; =============================================================================
@@ -90,9 +109,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
 ; ======== Add Hotstring EndChars ========
-OldEndChars := Hotstring("EndChars")
-NewEndChars := OldEndChars . "*<>&"  ; Make '*<>' trigger hotstring replacement
-Hotstring("EndChars", NewEndChars)
+#Hotstring EndChars -()[]{{}}':;/\,.?!`n `t*<>&
 
 ; ======== Toggle Script Key ========
 EnableScript := True
@@ -125,14 +142,19 @@ def create_ahk(file_handle, keywords, language_name, script_name=__file__):
             language=language_name))
 
     prev_letter = None
-    for abbrev, word in sorted(keywords.items(), key=lambda kv: kv[1].upper()):
+    for abbrev, abbrev_obj in sorted(
+            keywords.items(), key=lambda kv: kv[1].abbrev.upper()):
+
+        word = abbrev_obj.word
+
+        # place empty line between words that start with a different letter
         leading_letter = word[0].lower()
         if prev_letter != leading_letter:
             file_handle.write('\n')
             prev_letter = leading_letter
 
-        flags = ''
-        if requires_case_sensitive(abbrev):
+        flags = abbrev_obj.flags
+        if requires_case_sensitive(abbrev) and 'c' not in flags:
             flags += 'c'
         file_handle.write(':{}:{}::{}\n'.format(flags, escape_ahk(abbrev),
                                                 escape_ahk(word)))
@@ -146,8 +168,9 @@ def find_file(filename, paths=None):
             check_path = os.path.join(path, filename)
             if os.path.isfile(check_path):
                 return check_path
-    raise OSError(errno.ENOENT, "\"{}\" not found. Checked in '.' directory "
-                  "and in {}".format(filename, paths))
+    raise OSError(
+        errno.ENOENT, "\"{}\" not found. Checked in '.' directory "
+        "and in {}".format(filename, paths))
 
 
 def read_keywords(keywords_filename, keywords=None, search_path=None):

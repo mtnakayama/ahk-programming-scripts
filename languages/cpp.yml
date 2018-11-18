@@ -26,6 +26,8 @@ keywords:
   - reinterpret_cast
   - requires
   - static_cast
+  - string
+  - "std::"
   - template
   - this
   - thread_local
@@ -36,4 +38,5 @@ keywords:
   - typename
   - using
   - virtual
+  - vector
   - wchar_t
