@@ -18,12 +18,14 @@ keywords:
   - explicit
   - export
   - friend
+  - move
   - mutable
   - namespace
   - new
   - noexcept
   - nullptr
   - operator
+  - override
   - private
   - protected
   - public

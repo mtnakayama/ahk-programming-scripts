@@ -97,6 +97,7 @@ keywords:
   malloc : mc
   Math : ma
   math : ma
+  move : mv
   mutable : mu
 
   namespace : ns
@@ -115,6 +116,7 @@ keywords:
   Object : ob
   operator : op
   "@Override" : ov
+  override : ov
 
   package : pk
   pass:
