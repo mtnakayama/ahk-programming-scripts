@@ -10,6 +10,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; ======== Remap Keys ========
 Tab::Tab
-Tab & q::^z
+Tab & f::^z
 Tab & w::^y
-Tab & f::^f
+Tab & t::^f
+
+Tab & e::Up
+Tab & h::Down
+Tab & n::Left
+Tab & i::Right
