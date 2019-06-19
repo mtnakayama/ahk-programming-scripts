@@ -9,4 +9,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
 ; ======== Remap Keys ========
-#z::^z
+#z::Send ^z
+^!x::Send ^z
+!Space::Send ^z
