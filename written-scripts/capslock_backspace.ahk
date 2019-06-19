@@ -5,23 +5,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #SingleInstance force
 
-; ======== Toggle Script ========
-EnableScript := True
-#CapsLock::
-    Suspend, Permit
-    EnableScript := not EnableScript
-    if (EnableScript) {
-        Suspend, Off
-        TrayMessage := "Enabled"
-    }
-    else {
-        Suspend, On
-        TrayMessage := "Suspended"
-    }
-    TrayTip, CapsLock-Backspace, %TrayMessage%, 1, 0x11
-    Return
-
 
 ; ======== Remap Keys ========
 CapsLock::Backspace
-+CapsLock::CapsLock
+#CapsLock::CapsLock
