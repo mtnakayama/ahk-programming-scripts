@@ -9,3 +9,4 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; ======== Remap Keys ========
 CapsLock::Backspace
 #CapsLock::CapsLock
+#Backspace::CapsLock
