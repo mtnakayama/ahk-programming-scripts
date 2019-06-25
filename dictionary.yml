@@ -34,7 +34,9 @@ keywords:
   delete : dl
   default : de
   "#define" : df
-  def : df
+  def:
+    - df
+    - fn
   document : dc
   double : db
   dynamic_cast : dyct
@@ -113,6 +115,7 @@ keywords:
   not : nt
   nullptr : np
 
+  object : ob
   Object : ob
   operator : op
   "@Override" : ov

@@ -20,7 +20,7 @@ keywords:
   - None
   - nonlocal
   - not
-  - Object
+  - object
   - pass
   - print
   - "@property"
