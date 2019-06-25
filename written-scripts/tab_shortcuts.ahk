@@ -14,7 +14,9 @@ Tab & f::^z
 Tab & w::^y
 Tab & t::^f
 
-Tab & e::Up
-Tab & h::Down
+Tab & u::Up
+Tab & e::Down
 Tab & n::Left
 Tab & i::Right
+Tab & l::^Left
+Tab & y::^Right
