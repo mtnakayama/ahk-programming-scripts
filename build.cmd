@@ -5,7 +5,7 @@ SETLOCAL EnableDelayedExpansion
 SET BUILD_DIR=build
 
 DEL /Q %BUILD_DIR%\*.*
-FOR /R %%I IN (languages\*.yml) DO (CALL :generate_files %%I)
+FOR /R %%I IN (languages\*.yml) DO (CALL :generate_files "%%I")
 
 GOTO :eof
 
