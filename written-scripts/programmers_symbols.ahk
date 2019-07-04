@@ -10,18 +10,24 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; ======== Remap Keys ========
 #InputLevel, 50
+
 (::Send, <
 )::Send, >
+-::Send, |
 _::Send, ?
-=::Send, /
+=::Send, \
 
 `;::Send, '
 :::Send, "
+[::Send, /
+{::Send, -
+]::Send, [
+}::Send, {{}
+\::Send, ]
+|::Send, {}}
 
 '::Send, _
 "::Send, =
-
-
 
 <::Send, (
 >::Send, )
