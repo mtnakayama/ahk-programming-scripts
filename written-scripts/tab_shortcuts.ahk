@@ -20,3 +20,5 @@ Tab & n::Left
 Tab & i::Right
 Tab & l::^Left
 Tab & y::^Right
+Tab & h::Home
+Tab & .::End
