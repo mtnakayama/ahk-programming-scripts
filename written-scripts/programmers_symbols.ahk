@@ -19,8 +19,8 @@ _::Send, ?
 
 `;::Send, '
 :::Send, "
-[::Send, /
-{::Send, -
+[::Send, -
+{::Send, /
 ]::Send, [
 }::Send, {{}
 \::Send, ]
