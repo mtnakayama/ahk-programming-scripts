@@ -14,11 +14,14 @@ Tab & f::^z
 Tab & w::^y
 Tab & t::^f
 
-Tab & u::Up
-Tab & e::Down
-Tab & n::Left
-Tab & i::Right
 Tab & l::^Left
+Tab & u::Up
 Tab & y::^Right
+
+Tab & n::Left
+Tab & e::Down
+Tab & i::Right
+
+
 Tab & h::Home
 Tab & .::End
