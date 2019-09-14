@@ -21,6 +21,7 @@ Tab & y::^Right
 Tab & n::Left
 Tab & e::Down
 Tab & i::Right
+Tab & o::Delete
 
 
 Tab & h::Home
