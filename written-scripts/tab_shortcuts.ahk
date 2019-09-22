@@ -13,6 +13,7 @@ Tab::Tab
 Tab & f::^z
 Tab & w::^y
 Tab & t::^f
+Tab & [::Send, {{}{Enter}
 
 Tab & l::^Left
 Tab & u::Up
