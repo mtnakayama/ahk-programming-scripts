@@ -4,6 +4,7 @@ keywords:
   - abstract
   - ArrayList
   - assert
+  - assertEquals
   - boolean
   - break
   - byte
