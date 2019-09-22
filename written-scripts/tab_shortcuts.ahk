@@ -26,3 +26,4 @@ Tab & o::Delete
 
 Tab & h::Home
 Tab & .::End
+Tab & `;::Send, {End};{Enter}
