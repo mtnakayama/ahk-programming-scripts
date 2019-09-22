@@ -72,7 +72,7 @@ keywords:
   "#ifdef" : ifd
   "#ifndef" : ifn
   import : im
-  implements : ie
+  implements : il
   "#include":
     - im
     - ic
