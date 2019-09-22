@@ -5,6 +5,7 @@ keywords:
   - ArrayList
   - assert
   - assertEquals
+  - assertTrue
   - boolean
   - break
   - byte
