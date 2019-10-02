@@ -6,9 +6,17 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
 
+ToggleCapsLock()
+{
+    if GetKeyState("CapsLock", "T")
+        SetCapsLockState, off
+    else
+        SetCapsLockState, on
+}
+
 ; ======== Remap Keys ========
 #InputLevel, 50
 CapsLock::Backspace
-#CapsLock::CapsLock
-#Backspace::CapsLock
+#CapsLock::ToggleCapsLock()
+#Backspace::ToggleCapsLock()
 #InputLevel, 0
