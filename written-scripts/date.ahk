@@ -10,11 +10,16 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 ; Output the date in dashed "extended" ISO 8601 format.
-^!-::
+#F12::
 SendInput %A_YYYY%-%A_MM%-%A_DD%
 return
 
 ; Output the date in "basic" ISO 8601 format.
-^!=::
+^#F12::
 SendInput %A_YYYY%%A_MM%%A_DD%
+return
+
+; Output the date and time in ISO 8601 format.
+!#F12::
+SendInput %A_YYYY%-%A_MM%-%A_DD%T%A_Hour%:%A_Min%:%A_Sec%
 return
