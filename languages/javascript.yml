@@ -37,7 +37,7 @@ keywords:
   - try
   - typeof
   - undefined
-  - '''use strict'';'
+  - "'''use strict''';"
   - var
   - void
   - window

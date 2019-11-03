@@ -198,7 +198,7 @@ keywords:
   union : uo
   unsigned : ug
   using : us
-  '''use strict'';' : us
+  "'''use strict''';" : us
 
   var : vr
   vector : vc
