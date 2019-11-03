@@ -19,6 +19,7 @@ keywords:
   - extends
   - "false"
   - finally
+  - from
   - function
   - import
   - instanceof
