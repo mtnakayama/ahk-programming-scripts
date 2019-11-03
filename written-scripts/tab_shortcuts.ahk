@@ -23,6 +23,7 @@ Tab & n::Left
 Tab & e::Down
 Tab & i::Right
 Tab & o::Delete
+Tab & Enter::Send, {End}{Enter}
 
 
 Tab & h::Home
