@@ -48,6 +48,7 @@ keywords:
   end : ee
   enum : en
   "#endif" : ei
+  equals : eq
   except:
     - ex
     - ct
