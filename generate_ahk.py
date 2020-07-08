@@ -14,6 +14,8 @@ from typing import Iterable
 
 import yaml  # pyyaml package
 
+class KeywordError(RuntimeError):
+    pass
 
 class AbbreviationClashError(KeyError):
     """Thrown when there are multiple keywords using the same abbreviation"""
@@ -82,7 +84,10 @@ def build_dictionary(dictionary, language, hotstrings=None):
 
     dict_keywords = dictionary['keywords']
     for word in language.keywords:
-        entry = dict_keywords[word]
+        try:
+            entry = dict_keywords[word]
+        except KeyError:
+            raise KeywordError(f"Could not create a hotstring for '{word}', not present in the dictionary.")
 
         for hotstr in make_hotstrings(entry, word):
             add_keyword(hotstr.abbrev, hotstr, hotstrings)
