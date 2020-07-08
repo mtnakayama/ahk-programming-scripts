@@ -220,7 +220,7 @@ class Language(object):
 
     def _load_file(self, filename, search_paths=None, start=False):
         with open(filename, 'r') as language_file:
-            language_config = yaml.load(language_file)
+            language_config = yaml.load(language_file, Loader=yaml.FullLoader)
 
             if start:
                 self.name = language_config['language']
@@ -258,7 +258,8 @@ def generate_ahk(dictionary_filename, language_filename, output_filename):
 
     with open(dictionary_filename, 'r') as dictionary:
 
-        keyword_map = build_dictionary(yaml.load(dictionary), language)
+        keyword_map = build_dictionary(
+            yaml.load(dictionary, Loader=yaml.FullLoader), language)
 
     with open(output_filename, 'w') as out:
         create_ahk(out, keyword_map, language.name)
